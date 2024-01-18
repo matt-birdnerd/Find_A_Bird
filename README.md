@@ -1,14 +1,18 @@
-// Database setup
+### Find a Bird App
 
-sudo apt update
-sudo apt install postgresql postgresql-contrib
+## Setup Instructions
 
-// Log into postgresql
+### Database setup
+Install Postgresql
+    sudo apt update
+    sudo apt install postgresql postgresql-contrib
 
-sudo -u postgres psql
+Log into postgresql
 
-// Create a user for the scripts to use
+    sudo -u postgres psql
 
-CREATE USER find_a_bird WITH PASSWORD 'secure_password_goes_here';
+Create a user for the scripts to use
+
+    CREATE USER find_a_bird WITH PASSWORD 'secure_password_goes_here';
 
 
