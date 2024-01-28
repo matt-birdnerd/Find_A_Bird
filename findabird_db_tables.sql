@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "hotspots" (
   "subnational2_id" integer,
   "latitude" decimal(9,6),
   "longitude" decimal(9,6),
-  "geometry" "eometry(point, 4326),
+  "geometry" geometry(point, 4326),
   "display_name" varchar(255),
   "location_private" bool,
   "create_date" timestamp
