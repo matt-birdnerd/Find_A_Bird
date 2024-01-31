@@ -46,9 +46,6 @@ Create a user for the scripts to use
 
     CREATE USER find_a_bird WITH PASSWORD 'secure_password_goes_here';
 
-Give permissions to the script user
-
-    GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO find_a_bird;
 
 Create the database
 
@@ -66,6 +63,10 @@ Enable PostGIS extension
 Verify PostGIS installation with:
 
     SELECT PostGIS_full_version();
+
+Give permissions to the script user
+
+    GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO find_a_bird;
 
 Use the ```findabird_db_tables.sql``` file to initialize the database tables and columns.
 

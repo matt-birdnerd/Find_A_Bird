@@ -1,0 +1,98 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table hotspots {
+  id serial [primary key]
+  ebird_id varchar(50)
+  country_id integer [ref: > countries.id]
+  subnational1_id integer [ref: > subnational1.id]
+  subnational2_id integer [ref: > subnational2.id]
+  latitude decimal(9,6)
+  longitude decimal(9,6)
+  geometry geometry(point, 4326)
+  display_name varchar(255)
+  location_private bool
+  create_date timestamp
+}
+
+Table countries {
+  id serial [primary key]
+  country_code varchar(2)
+  display_name varchar(100)
+}
+
+Table subnational1 {
+  id serial [primary key]
+  subnational1_code varchar(10) [note: 'State in the US']
+  display_name varchar(100)
+  country_id integer [ref: > countries.id]
+}
+
+Table subnational2 {
+  id serial [primary key]
+  subnational2_code varchar(10) [note: 'County/Parish in the US']
+  display_name varchar(100)
+  country_id integer [ref: > countries.id]
+  subnational1_id integer [ref: > subnational1.id]
+}
+
+Table users {
+  id serial [primary key]
+  ebird_observer_id varchar(50)
+  first_name varchar(50)
+  last_name varchar(50)
+  email varchar(255)
+}
+
+Table species {
+  id serial [primary key]
+  taxonomic_order integer
+  common_name varchar(255)
+  sci_name varchar(255)
+  order varchar(100)
+  family varchar(100)
+  category varchar(10)
+  avibase_id varchar(20)
+  species_code varchar(10)
+  alpha_code_four varchar(4)
+  alpha_code_six varchar(6)
+}
+
+Table observations {
+  id serial [primary key]
+  ebird_obs_id varchar(50)
+  checklist_id integer [ref: > checklists.id]
+  species_id integer [ref: > species.id]
+  count integer
+  observation_reviewed bool
+}
+
+Table checklists {
+  id serial [primary key]
+  ebird_id varchar(50)
+  user_id integer [ref: > users.id]
+  hotspot_id integer [ref: > hotspots.id]
+  create_date timestamp
+}
+
+Table user_locations {
+  id serial [primary key]
+  user_id integer [ref: > users.id]
+  polygon GEOMETRY(POLYGON, 4326)
+  location_name varchar(255)
+}
+
+Table species_needs {
+  id serial [primary key]
+  user_id integer [ref: > users.id]
+  species_id integer [ref: > species.id]
+}
+
+Table match_log {
+  id serial [primary key]
+  user_id integer [ref: > users.id]
+  species_id integer [ref: > species.id]
+  observation_id integer [ref: > observations.id]
+  user_location integer [ref: > user_locations.id]
+  match_date timestamp
+}
