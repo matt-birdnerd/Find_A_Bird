@@ -32,7 +32,6 @@ Table subnational2 {
   id serial [primary key]
   subnational2_code varchar(10) [note: 'County/Parish in the US']
   display_name varchar(100)
-  country_id integer [ref: > countries.id]
   subnational1_id integer [ref: > subnational1.id]
 }
 

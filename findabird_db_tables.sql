@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS "subnational2" (
   "id" serial PRIMARY KEY,
   "subnational2_code" varchar(10),
   "display_name" varchar(100),
-  "country_id" integer,
   "subnational1_id" integer
 );
 
@@ -105,8 +104,6 @@ ALTER TABLE "hotspots" ADD FOREIGN KEY ("subnational1_id") REFERENCES "subnation
 ALTER TABLE "hotspots" ADD FOREIGN KEY ("subnational2_id") REFERENCES "subnational2" ("id");
 
 ALTER TABLE "subnational1" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
-
-ALTER TABLE "subnational2" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
 
 ALTER TABLE "subnational2" ADD FOREIGN KEY ("subnational1_id") REFERENCES "subnational1" ("id");
 
