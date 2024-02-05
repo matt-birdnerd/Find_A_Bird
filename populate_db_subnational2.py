@@ -17,7 +17,7 @@ db_password = os.getenv('DB_PASSWORD')
 db_host = os.getenv('DB_HOST', 'localhost')
 db_port = os.getenv('DB_PORT', '5432')
 
-# Get list of states/subnational2 values from the database
+# Get list of counties/subnational2 values from the database
 # Connect to the database
 try:
         conn = psycopg2.connect(

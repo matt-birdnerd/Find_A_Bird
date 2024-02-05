@@ -4,8 +4,6 @@
 Table hotspots {
   id serial [primary key]
   ebird_id varchar(50)
-  country_id integer [ref: > countries.id]
-  subnational1_id integer [ref: > subnational1.id]
   subnational2_id integer [ref: > subnational2.id]
   latitude decimal(9,6)
   longitude decimal(9,6)

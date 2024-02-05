@@ -1,8 +1,6 @@
 CREATE TABLE IF NOT EXISTS "hotspots" (
   "id" serial PRIMARY KEY,
   "ebird_id" varchar(50),
-  "country_id" integer,
-  "subnational1_id" integer,
   "subnational2_id" integer,
   "latitude" decimal(9,6),
   "longitude" decimal(9,6),
@@ -94,10 +92,6 @@ CREATE TABLE IF NOT EXISTS "match_log" (
 COMMENT ON COLUMN "subnational1"."subnational1_code" IS 'State in the US';
 
 COMMENT ON COLUMN "subnational2"."subnational2_code" IS 'County/Parish in the US';
-
-ALTER TABLE "hotspots" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
-
-ALTER TABLE "hotspots" ADD FOREIGN KEY ("subnational1_id") REFERENCES "subnational1" ("id");
 
 ALTER TABLE "hotspots" ADD FOREIGN KEY ("subnational2_id") REFERENCES "subnational2" ("id");
 
