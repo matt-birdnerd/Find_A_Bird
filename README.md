@@ -67,6 +67,8 @@ Verify PostGIS installation with:
 Give permissions to the script user
 
     GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO find_a_bird;
+    GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO find_a_bird;
+
 
 Use the ```findabird_db_tables.sql``` file to initialize the database tables and columns.
 

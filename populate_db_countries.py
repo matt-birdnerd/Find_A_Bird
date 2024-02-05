@@ -49,8 +49,8 @@ try:
 
     # Insert data into the database
     for country in countries_data:
-        country_code = country['code']  # Adjust the key based on your JSON structure
-        country_name = country['name']  # Adjust the key based on your JSON structure
+        country_code = country['code']  
+        country_name = country['name'] 
 
         # Check for duplicates
         cursor.execute('SELECT * FROM countries WHERE country_code = %s', (country_code,))

@@ -46,12 +46,10 @@ CREATE TABLE IF NOT EXISTS "species" (
   "common_name" varchar(255),
   "sci_name" varchar(255),
   "order" varchar(100),
-  "family" varchar(100),
+  "family_common" varchar(100),
   "category" varchar(10),
-  "avibase_id" varchar(20),
-  "species_code" varchar(10),
-  "alpha_code_four" varchar(4),
-  "alpha_code_six" varchar(6)
+  "alpha_code" varchar(100),
+  "species_code" varchar(50)
 );
 
 CREATE TABLE IF NOT EXISTS "observations" (
