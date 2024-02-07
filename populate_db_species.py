@@ -28,7 +28,7 @@ headers = {
     'X-eBirdApiToken': api_key
 }
 
-# GET countries list from eBird API
+# GET species list from eBird API
 try:
     # Make the GET request to the eBird API
     api_response = requests.get(url, headers=headers)
@@ -68,14 +68,14 @@ try:
     table = sa.Table('species', metadata, autoload_with=engine)
 
     for index, row in species_import_df.iterrows():
-        with engine.connect() as connection:
+        with engine.connect() as conn:
             try:
                 stmt = sa.select(table).where(table.c.species_code == row['species_code'])
-                result = connection.execute(stmt)
+                result = conn.execute(stmt)
                 if result.fetchone() is None:
-                    pd.DataFrame([row]).to_sql('species', connection, if_exists='append', index=False, method='multi')
-                    connection.commit()
-                    print(f"INSERT {row}")
+                    pd.DataFrame([row]).to_sql('species', conn, if_exists='append', index=False, method='multi')
+                    conn.commit()
+                    print(f"INSERT {index}")
                 
                 else:
                     print("exists already")
@@ -87,3 +87,6 @@ try:
 except sa.exc.SQLAlchemyError as e:
     print(f"Database connection failed: {e}")
     sys.exit(1)  # Exit the script with a non-zero status code
+
+finally:
+    conn.close()
